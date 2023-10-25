@@ -10,8 +10,7 @@ function init() {
     target = new THREE.Vector3(0, 0, 3);
     mouse = new THREE.Vector2();
 
-    // set up scene
-    const container = document.getElementById('scene-container');
+    // set up scene icluding camera and renderer
     scene = new THREE.Scene();
     scene.background = new THREE.Color('gray');
 
@@ -21,6 +20,8 @@ function init() {
 
     renderer = new THREE.WebGLRenderer({ alpha: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
+
+    const container = document.getElementById('scene-container');
     container.appendChild(renderer.domElement);
 
     // make it a bit brighter
@@ -43,6 +44,7 @@ function init() {
     // load the model
     const loader = new GLTFLoader();
     loader.load('/sixcen_head_3.glb', (gltf) => {
+        // onload
         model = gltf.scene;
         model.position.set(0, -2, 0);
         model.traverse(
@@ -53,6 +55,11 @@ function init() {
             }
         )
         scene.add(model);
+
+        const mixer = new THREE.AnimationMixer(model);
+        gltf.animations.forEach((clip) => {
+            mixer.clipAction(clip).play();
+        });
     });
 }
 
