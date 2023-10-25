@@ -56,7 +56,6 @@ function init() {
     });
 }
 
-
 const render = () => {
     requestAnimationFrame(render);
     renderer.render(scene, camera);
