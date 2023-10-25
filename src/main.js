@@ -3,10 +3,6 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
 // globals
 let mouse, target, model, renderer, scene, camera;
-window.addEventListener('mousemove', function(e) {
-    mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
-    mouse.y = -(e.clientY / window.innerHeight) * 2 - 1;
-});
 
 function init() {
 
@@ -75,6 +71,11 @@ const update = () => {
         model.lookAt(target);
     }
 }
+
+window.addEventListener('mousemove', function(e) {
+    mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
+    mouse.y = -(e.clientY / window.innerHeight) * 2 - 1;
+});
 
 init();
 render();
