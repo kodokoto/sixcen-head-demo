@@ -71,8 +71,8 @@ const render = () => {
 const update = () => {
     requestAnimationFrame(update);
     // basic lerping
-    target.x += (mouse.x - target.x) * 0.02;
-    target.y += (mouse.y - target.y) * 0.02;
+    target.x += (mouse.x - target.x) * 0.1;
+    target.y += (mouse.y - target.y) * 0.1;
     if (model) {
         model.lookAt(target);
     }
